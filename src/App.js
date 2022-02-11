@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from 'react';
 import { CssBaseline, Grid } from '@material-ui/core';
 
-
+import ReactGa from 'react-ga';
 import Header from './components/Header/Header';
 import List from './components/List/List';
 import Map from './components/Map/Map';
@@ -21,6 +21,11 @@ const App = () => {
     const [type, setType] = useState('restaurants');
     const [rating, setRating] = useState('');
     const [ isLoading, setIsLoading ] = useState(false);
+
+    useEffect(() => {
+        ReactGa.initialize('G-L3BLLTWSN6');
+        ReactGa.pageview('/');
+    }, [])
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(({ coords: {latitude, longitude} }) => {
